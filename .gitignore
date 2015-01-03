@@ -1,0 +1,4 @@
+SyncAudioPlayer/bin/*
+SyncAudioPlayer/obj/*
+*.dll
+*.userprefs

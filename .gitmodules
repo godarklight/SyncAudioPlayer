@@ -1,0 +1,9 @@
+[submodule "SDL2-CS"]
+	path = SDL2-CS
+	url = https://github.com/flibitijibibo/SDL2-CS
+[submodule "DarkNetwork2"]
+	path = DarkNetwork2
+	url = https://github.com/godarklight/DarkNetwork2.git
+[submodule "MessageStream2"]
+	path = MessageStream2
+	url = https://github.com/godarklight/MessageStream2.git
