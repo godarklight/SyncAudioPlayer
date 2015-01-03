@@ -11,7 +11,6 @@ namespace SyncAudioPlayer
 {
     public class MainClass
     {
-        private static TimeLock syncLock;
         private static SyncObject syncObject;
 
         public static void Main()
@@ -49,7 +48,7 @@ namespace SyncAudioPlayer
             networkHandler.RegisterCallback(0, NetworkMessages.HandleSyncTime);
             networkHandler.RegisterCallback(1, NetworkMessages.HandlePlay);
             networkHandler.RegisterCallback(2, NetworkMessages.HandleStop);
-            NetworkClient<SyncObject> darkNetworkClient = NetworkClient<SyncObject>.ConnectNewTCPClient("127.0.0.1", 6700, networkHandler, syncObject);
+            NetworkClient<SyncObject> darkNetworkClient = NetworkClient<SyncObject>.ConnectNewTCPClient("192.168.3.2", 6700, networkHandler, syncObject);
             syncObject.networkClient = darkNetworkClient;
             NetworkMessages.SendSyncTime(syncObject);
         }

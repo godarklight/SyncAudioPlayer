@@ -14,7 +14,6 @@ namespace SyncAudioPlayer
         private static byte[] loadedMusic;
         private static int bytesLeft;
         private static SDL.SDL_AudioSpec audioSpec;
-        private static SDL.SDL_AudioSpec fileSpec;
 
         public static bool DataAvailable()
         {
@@ -49,6 +48,7 @@ namespace SyncAudioPlayer
                 Console.WriteLine("Couldn't open audio device: " + SDL.SDL_GetError());
                 return false;
             }
+            Console.WriteLine("Samples: " + audioSpec.samples + ", size: " + audioSpec.size);
             audioDevice = retValue;
             return true;
         }
@@ -57,7 +57,7 @@ namespace SyncAudioPlayer
         {
             IntPtr audioPtr;
             uint audioLength;
-            fileSpec = SDL.SDL_LoadWAV("stb.wav", ref audioSpec, out audioPtr, out audioLength);
+            SDL.SDL_LoadWAV("stb.wav", ref audioSpec, out audioPtr, out audioLength);
             if (audioPtr == IntPtr.Zero)
             {
                 Console.WriteLine("Couldn't open audio file: " + SDL.SDL_GetError());
@@ -93,6 +93,10 @@ namespace SyncAudioPlayer
             if (syncLock != null)
             {
                 SetSampleError();
+            }
+            if (bytesLeft == 0)
+            {
+                Console.WriteLine("Finished at " + DateTime.UtcNow.Ticks);
             }
         }
 

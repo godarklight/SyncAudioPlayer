@@ -51,7 +51,7 @@ namespace SyncAudioPlayer
                 using (MessageReader mr = new MessageReader(messageData))
                 {
                     long startTime = mr.Read<long>();
-                    long startTimeAdjusted = startTime + stateObject.offsetTick;
+                    long startTimeAdjusted = startTime - stateObject.offsetTick;
                     long timeNow = DateTime.UtcNow.Ticks;
                     long offsetTicks = startTimeAdjusted - timeNow;
                     TimeLock newLock = new TimeLock(offsetTicks);
